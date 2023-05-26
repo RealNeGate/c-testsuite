@@ -11,6 +11,13 @@ those interfaces for a variety of tools.
 
 results are published daily to https://c-testsuite.github.io/
 
+# Cuik fork
+
+This fork is built to run Cuik testing, you'll need to download or compile Cuik then run this:
+
+```
+python test.py
+```
 
 # Test suites
 
@@ -136,8 +143,8 @@ ways to ease the burden in the future.
 
 ## Naming test cases
 
-The names are not stable for now, so if you 
-refer to a test case in your issue tracker, it is best to 
+The names are not stable for now, so if you
+refer to a test case in your issue tracker, it is best to
 name it something like ```c-testsuite/$CTESTGITCOMMIT/path/to/test```.
 
 ## Getting a summary from the command line
