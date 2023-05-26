@@ -20,4 +20,4 @@ jobs:
       - name: Run tests
         shell: cmd
         timeout-minutes: 10
-        run: python test.py > $GITHUB_STEP_SUMMARY 2>&1
+        run: python test.py > %GITHUB_STEP_SUMMARY% 2>&1
