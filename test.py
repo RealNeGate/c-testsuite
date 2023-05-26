@@ -1,5 +1,19 @@
 import glob
 import subprocess
+import re
+
+# 7-bit C1 ANSI sequences
+ansi_escape = re.compile(r'''
+    \x1B  # ESC
+    (?:   # 7-bit C1 Fe (except CSI)
+        [@-Z\\-_]
+    |     # or [ for CSI, followed by a control sequence
+        \[
+        [0-?]*  # Parameter bytes
+        [ -/]*  # Intermediate bytes
+        [@-~]   # Final byte
+    )
+''', re.VERBOSE)
 
 good = 0
 total = 0
@@ -16,8 +30,8 @@ for f in list:
 
 	print(f"# Test `{f}`\n")
 	print("```\n")
-	print(result.stdout)
-	print(result.stderr)
+	print(ansi_escape.sub('', result.stdout))
+	print(ansi_escape.sub('', result.stderr))
 	print("```\n")
 
 	if result.returncode == 0:
