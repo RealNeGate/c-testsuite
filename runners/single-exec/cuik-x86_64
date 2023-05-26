@@ -15,7 +15,7 @@ cat $t
 
 set -x
 
-if ! cuik "$t"
+if ! ./cuik "$t"
 then
     exit 1
 fi
