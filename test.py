@@ -12,12 +12,12 @@ print("## Raw results\n")
 
 for f in list:
 	total += 1
-	result = subprocess.run(["sh", "./runners/single-exec/cuik-x86_64", f], capture_output=True)
+	result = subprocess.run(["sh", "./runners/single-exec/cuik-x86_64", f], capture_output=True, text=True)
 
 	print(f"# Test `{f}`\n")
 	print("```\n")
-	print(result.stdout.decode('utf-8'))
-	print(result.stderr.decode('utf-8'))
+	print(result.stdout)
+	print(result.stderr)
 	print("```\n")
 
 	if result.returncode == 0:
