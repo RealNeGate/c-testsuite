@@ -1,0 +1,29 @@
+name: CI
+on: [pull_request, workflow_dispatch, push]
+
+jobs:
+  build_win:
+    runs-on: windows-2019
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-python@v4
+      - uses: ilammy/msvc-dev-cmd@v1
+
+      - name: Download Cuik
+        shell: cmd
+        timeout-minutes: 10
+        run: |
+          curl -L https://github.com/RealNeGate/Cuik/releases/download/latest/cuik-windows.zip --output cuik.zip
+          unzip cuik.zip
+          copy cuik-windows\cuik.exe cuik.exe
+
+      - name: Run tests
+        shell: cmd
+        timeout-minutes: 10
+        run: python test.py > results.txt 2>&1
+
+      - name: upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: results
+          path: results.txt
