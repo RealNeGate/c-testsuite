@@ -8,7 +8,7 @@ list = glob.glob("tests/single-exec/*.c")
 
 print("[Click for summary](#summary)")
 
-print("## Raw results ")
+print("## Raw results\n")
 print("```\n")
 
 for f in list:
@@ -19,5 +19,5 @@ for f in list:
 
 print("```\n")
 
-print("## Summary ")
+print("## Summary\n")
 print(f"passed {good} out of {total}")
