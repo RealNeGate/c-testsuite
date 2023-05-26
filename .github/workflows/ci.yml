@@ -20,10 +20,4 @@ jobs:
       - name: Run tests
         shell: cmd
         timeout-minutes: 10
-        run: python test.py > results.txt 2>&1
-
-      - name: upload artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: results
-          path: results.txt
+        run: python test.py > $GITHUB_STEP_SUMMARY 2>&1
